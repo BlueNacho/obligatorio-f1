@@ -1,0 +1,45 @@
+version: "3.9"
+
+services:
+  postgres-staging:
+    image: postgres:15
+    container_name: postgres_staging
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: staging
+    ports:
+      - "5433:5432"
+    volumes:
+      - staging_data:/var/lib/postgresql/data
+
+  postgres-dw:
+    image: postgres:15
+    container_name: postgres_dw
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: dw
+    ports:
+      - "5434:5432"
+    volumes:
+      - dw_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_f1
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres-staging
+      - postgres-dw
+
+volumes:
+  staging_data:
+  dw_data:
