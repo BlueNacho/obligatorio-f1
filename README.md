@@ -41,3 +41,9 @@ En **dw**, ejecutar el script del Data Warehouse:
 - Password: `admin`
 
 Usar las tablas `dim_*` y `fact_*` para crear los reportes.
+
+---
+
+## 📊 Estructura del Data Warehouse
+
+Para más información sobre la estructura del Data Warehouse, consulta la [documentación completa](estructura_dw.md).
